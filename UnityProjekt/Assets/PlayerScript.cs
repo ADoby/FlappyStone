@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour {
 
             if (rigidbody.velocity.magnitude < 0.01f)
             {
-                gameOver = true; 
+               // gameOver = true; 
             }
         }
        
@@ -85,16 +85,6 @@ public class PlayerScript : MonoBehaviour {
 	// Update is called once per frame
     void FixedUpdate()
     {
-        //currentVelocity = rigidbody2D.velocity;
-        //currentVelocity.x += speedChange * Time.deltaTime;
-        
-
         rigidbody.velocity = new Vector3(Mathf.Clamp(rigidbody.velocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(rigidbody.velocity.y, -maxFallSpeed, maxFallSpeed), rigidbody.velocity.z);
-
-        //currentVelocity = Vector2.ClampMagnitude(currentVelocity, maxSpeed);
-        //rigidbody2D.velocity = currentVelocity;
-        
-
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, 1) * rigidbody2D.velocity.y * rotation);
 	}
 }

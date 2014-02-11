@@ -76,42 +76,6 @@ public class GenerateLevel : MonoBehaviour {
         mesh = GetComponent<MeshFilter>().mesh;
         mesh2 = secondMeshFilter.mesh;
 
-
-
-
-        /*BuildStripeBottom(transform.position, 0, height);
-        
-        for (int i = 1; i < StripeCount; i++)
-        {
-            float currentYDiffChange = 0.0f;
-
-            if (lastYDiffChange > smoothing)
-            {
-                currentYDiffChange = Random.Range(minHeightChangePerStripe * smoothing, maxHeightChangePerStripe);
-            }
-            else if (lastYDiffChange < -smoothing)
-            {
-                currentYDiffChange = Random.Range(minHeightChangePerStripe, maxHeightChangePerStripe * smoothing);
-            }
-            else
-            {
-                currentYDiffChange = Random.Range(minHeightChangePerStripe, maxHeightChangePerStripe);
-            }
-
-            currentYDiff += currentYDiffChange;
-            lastYDiffChange = currentYDiffChange;
-
-
-            BuildStripeSecondBottom(transform.position, i, height);
-        }
-
-        BuildStripeTop(transform.position, 0, height);
-
-        for (int i = 1; i < StripeCount; i++)
-        {
-            BuildStripeSecondTop(transform.position, i, height);
-        }*/
-
         BuildStripeBottom(transform.position, 0, height);
         BuildStripeTop(transform.position, 0, height);
 
@@ -496,8 +460,8 @@ public class GenerateLevel : MonoBehaviour {
         }
         for (int i = 0; i < 6 * resolutionY; i++)
         {
-            newTriangles.RemoveAt(0);
-            newTriangles2.RemoveAt(0);
+           // newTriangles.RemoveAt(0);
+            //newTriangles2.RemoveAt(0);
         }
     }
 
@@ -515,6 +479,7 @@ public class GenerateLevel : MonoBehaviour {
         if (movement >= resolutionX)
         {
             movement -= resolutionX;
+
             //Delete one stripe and add one
             DeleteFirstStripe();
             AddOneStrip(StripeCount - 1);
