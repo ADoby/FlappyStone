@@ -2,9 +2,11 @@
 ## Eclipse
 #################
 
+*.csproj
 *.sln
 Library
 Temp
+obj
 
 *.pydevproject
 .project
