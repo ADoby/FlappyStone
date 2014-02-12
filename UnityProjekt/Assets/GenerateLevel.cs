@@ -56,9 +56,9 @@ public class GenerateLevel : MonoBehaviour {
     [Range(0.005f, 0.2f)]
     public float smoothing = 0.02f;
 
-    [Range(0.1f, 10.0f)]
+    [Range(0f, 10.0f)]
     public float minSplit = 2.0f;
-    [Range(0.1f, 10.0f)]
+    [Range(0f, 10.0f)]
     public float maxSplit = 2.0f;
 
     float lastYDiffChange = 0.0f;
@@ -68,7 +68,6 @@ public class GenerateLevel : MonoBehaviour {
 
         Random.seed = 0;
 
-        Debug.Log(Vector3.Cross(new Vector3(0, 2, 3), new Vector3(17, 0, -1)));
 
         minHeightChangePerStripe *= resolutionX;
         maxHeightChangePerStripe *= resolutionX;
@@ -109,6 +108,8 @@ public class GenerateLevel : MonoBehaviour {
         lastYDiffChange = currentYDiffChange;
 
         BuildStripeSecondBottom(transform.position, i, height);
+
+
         BuildStripeSecondTop(transform.position, i, height);
 
         UpdateMeshs();
@@ -150,9 +151,7 @@ public class GenerateLevel : MonoBehaviour {
         float y = startingPosition.y;
         float z = startingPosition.z;
 
-        y = newVertices[startIndex * 4 * resolutionY].y + 1.5f*height  + Random.Range(minSplit, maxSplit);
-
-        //startIndex = startIndex * (resolutionY * 4);
+        y = newVertices[startIndex * 4 * resolutionY].y + 1.5f * height  + Random.Range(minSplit, maxSplit);
 
         for (int i = 0; i < resolutionY; i++)
         {
@@ -227,9 +226,11 @@ public class GenerateLevel : MonoBehaviour {
         float y = startingPosition.y + currentYDiff;
         float z = startingPosition.z;
 
-        y = newVertices[startIndex * 4 * resolutionY - 1].y + 1.5f * height + Random.Range(minSplit, maxSplit);
+        Debug.Log("Vertex Position of ID: " + (startIndex * 4 * resolutionY).ToString());
 
-        x = newVertices[startIndex * 4 * resolutionY - 1].x;
+        y = newVertices[startIndex * 4 * resolutionY + 3].y + 1.5f * height + Random.Range(minSplit, maxSplit);
+
+        x = newVertices[startIndex * 4 * resolutionY].x;
 
         startIndex = startIndex * (resolutionY * 4);
 
@@ -241,9 +242,9 @@ public class GenerateLevel : MonoBehaviour {
             {
                 //Nearly flat but a bit thingy in z
                 newVertices2.Add(newVertices2[startIndex - (resolutionY * 4) + 3 + (i * 4)]); //Links Unten
-                newVertices2.Add(newVertices2[startIndex - (resolutionY * 4) + 3 + (i * 4) - 1]); //Links Oben
-                newVertices2.Add(new Vector3(x + resolutionX, y - vertDiffY - diffY, z + Random.Range(-maxRandomPositionZ, maxRandomPositionZ))); //Rechts Oben
-                newVertices2.Add(new Vector3(x + resolutionX, y - diffY, z + Random.Range(-maxRandomPositionZ, maxRandomPositionZ))); //Rechts Unten
+                newVertices2.Add(newVertices2[startIndex - (resolutionY * 4) + 2 + (i * 4)]); //Links Oben
+                newVertices2.Add(new Vector3(x + resolutionX, y - vertDiffY, 0)); //Rechts Oben
+                newVertices2.Add(new Vector3(x + resolutionX, y, 0)); //Rechts Unten
 
                 newColors2.Add(earth);
                 newColors2.Add(earth);
