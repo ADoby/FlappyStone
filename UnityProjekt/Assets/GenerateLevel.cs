@@ -56,9 +56,9 @@ public class GenerateLevel : MonoBehaviour {
     [Range(0.005f, 0.2f)]
     public float smoothing = 0.02f;
 
-    [Range(0f, 10.0f)]
+    [Range(-5f, 10.0f)]
     public float minSplit = 2.0f;
-    [Range(0f, 10.0f)]
+    [Range(-5f, 10.0f)]
     public float maxSplit = 2.0f;
 
     float lastYDiffChange = 0.0f;
